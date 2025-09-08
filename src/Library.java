@@ -11,9 +11,10 @@ public class Library {
             System.out.println("\nLibrary Menu:");
             System.out.println("1. Add Book");
             System.out.println("2. View Books");
-            System.out.println("3. Add Student");
-            System.out.println("4. View Students");
-            System.out.println("5. Exit");
+            System.out.println("3. Delete Book");
+            System.out.println("4. Add Student");
+            System.out.println("5. View Students");
+            System.out.println("6. Exit");
             System.out.print("Choose option: ");
 
             int choice = sc.nextInt();
@@ -22,9 +23,10 @@ public class Library {
             switch(choice){
                 case 1: addBook(); break;
                 case 2: viewBooks(); break;
-                case 3: addStudent(); break;
-                case 4: viewStudents(); break;
-                case 5: System.exit(0);
+                case 3: deleteBook(); break;
+                case 4: addStudent(); break;
+                case 5: viewStudents(); break;
+                case 6: System.exit(0);
                 default: System.out.println("Invalid option!");
             }
         }
@@ -48,6 +50,30 @@ public class Library {
             }
         }
     }
+    private static void deleteBook() {
+        System.out.println("Enter the name of the book you want to delete:");
+        String title = sc.nextLine();
+
+        Books bookToRemove = null;
+
+        // Search through the list
+        for (Books b : books) {
+            if (b.getTitle().equalsIgnoreCase(title)) {
+                bookToRemove = b;
+                break; // stop once found
+            }
+        }
+
+        if (bookToRemove != null) {
+            books.remove(bookToRemove);
+            System.out.println("Book removed successfully!");
+        } else {
+            System.out.println("Book not found.");
+        }
+    }
+
+
+
 
     private static void addStudent(){
         System.out.print("Enter name: ");
